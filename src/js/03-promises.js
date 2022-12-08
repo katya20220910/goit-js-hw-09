@@ -1,9 +1,9 @@
-import Notify from 'notiflix';
+import {Notify} from 'notiflix';
 
 const formRef = document.querySelector('.form');
 formRef.addEventListener('submit', onSubmit);
 
-function onSubmitForm(e) {
+function onSubmit(e) {
   e.preventDefault();
   let delay = Number(formRef.delay.value);
   for (let i = 1; i <= formRef.amount.value; i += 1) {
