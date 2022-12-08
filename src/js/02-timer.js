@@ -3,7 +3,6 @@ import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix';
 
 
-
 const refs = {
   start: document.querySelector('button[data-start]'),
   picker: document.querySelector('#datetime-picker'),
