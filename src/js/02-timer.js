@@ -10,6 +10,7 @@ const refs = {
   secondsEl: document.querySelector('[data-seconds]'),
 };
 
+
 refs.start.addEventListener('click', startTimer);
 refs.start.disabled = true;
 let isActive = false;

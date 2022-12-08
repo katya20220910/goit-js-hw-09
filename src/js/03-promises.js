@@ -5,9 +5,7 @@ formRef.addEventListener('submit', onSubmit);
 
 function onSubmitForm(e) {
   e.preventDefault();
-
   let delay = Number(formRef.delay.value);
-
   for (let i = 1; i <= formRef.amount.value; i += 1) {
     createPromise(i, delay)
       .then(({ position, delay }) => {
@@ -25,9 +23,9 @@ function createPromise(position, delay) {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
-        resolve({ position, delay })
+        resolve({ position, delay });
       }
-      reject({ position, delay })
+      reject({ position, delay });
     }, delay);
   });
-};
+}

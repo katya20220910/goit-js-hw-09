@@ -24,5 +24,6 @@ function bodyStopChangeColor() {
 }
 
 
+
 // buttonStart.setAttribute('disabled', true);
 // buttonStart.removeAttribute('disabled');
