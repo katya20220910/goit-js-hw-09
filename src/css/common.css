@@ -17,12 +17,14 @@ img {
   max-width: 100%;
 }
 
-.timer {
+/* .timer {
   display: flex;
-  gap: 20px;
+  justify-content: baseline;
+  gap: 50px;
 }
 
 .value {
   color: red;
   font-size: 16px;
-}
+} */
+

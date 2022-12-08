@@ -3,56 +3,31 @@ import Notiflix from 'notiflix';
 const formRef = document.querySelector('.form');
 formRef.addEventListener('submit', onSubmit);
 
-function onSubmit(e) {
+function onSubmitForm(e) {
   e.preventDefault();
-  const {
-    elements: { delay, step, amount },
-  } = e.currentTarget;
 
-  const { promisesAmount, firstDelay, delayStep } = getOutput(delay, step, amount);
+  let delay = Number(formRef.delay.value);
 
-  getPromises(promisesAmount, firstDelay, delayStep);
-}
-
-function getOutput(delay, step, amount) {
-  let delayStep = Number(step.value);
-  let firstDelay = Number(delay.value);
-  let promisesAmount = Number(amount.value);
-
-  return { delayStep, firstDelay, promisesAmount };
-}
-
-function getPromises(amount, firstDelay, delayStep) {
-  for (let i = 1; i <= amount; i++) {
-    createPromise(i, firstDelay)
-      .then(result => {
-        Notiflix.Notify.success(`✅ Fulfilled promise ${result.position} in ${result.delay}ms`, {
-          timeout: 10000,
-          clickToClose: true,
-          useIcon: false,
-        });
+  for (let i = 1; i <= formRef.amount.value; i += 1) {
+    createPromise(i, delay)
+      .then(({ position, delay }) => {
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {
-          timeout: 10000,
-          clickToClose: true,
-          useIcon: false,
-        });
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-    firstDelay += delayStep;
+    delay += Number(formRef.step.value);
   }
 }
 
 function createPromise(position, delay) {
-  const promise = new Promise((resolve, reject) => {
-    const shouldResolve = Math.random() > 0.3;
-
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
+      const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
-        resolve({ position, delay });
+        resolve({ position, delay })
       }
-      reject({ position, delay });
+      reject({ position, delay })
     }, delay);
   });
-  return promise;
-}
+};
