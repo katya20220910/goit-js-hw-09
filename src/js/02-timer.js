@@ -25,17 +25,30 @@ const options = {
   onClose,
 };
 
-function onClose(selectedDates) {
-  if (selectedDates[0] < Date.now()) {
-    Notify.failure('Please choose a date in the future');
+ function onClose(selectedDates) {
+   if (selectedDates[0] < Date.now()) {
+     Notiflix.Notify.failure('Please choose a date in the future');
     selectedDates[0] = new Date();
-    return;
-  } else {
-    selectedTime = selectedDates[0];
-    refs.start.disabled = false;
-    clearInterval(timerId);
-  }
-}
+     return;
+   } else {
+     selectedTime = selectedDates[0];
+     refs.start.disabled = false;
+     clearInterval(timerId);
+   }
+ };
+// function onClose(selectedDates) {
+//   console.log(selectedDates[0]);
+//   if (selectedDates[0] - new Date() < 0) {
+//     // alert('Please choose a date in the future');
+//     Notify.failure('Please choose a date in the future');
+//   } else {
+//     refs.start.removeAttribute('disabled');
+//     //  refs.start.addEventListener('click', () => {
+//     // countDoun(selectedDates[0]);
+//     //  refs.start.setAttribute('disabled', true);
+//     //  });
+//   }
+// }
 
 flatpickr(refs.picker, options);
 
@@ -43,7 +56,7 @@ function startTimer() {
   if (isActive) {
     return;
   }
-  
+
   isActive = true;
   timerId = setInterval(() => {
     const currentTime = Date.now();
