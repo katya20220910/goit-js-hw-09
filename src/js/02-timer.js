@@ -26,16 +26,19 @@ const options = {
 };
 
 function onClose(selectedDates) {
-  if (selectedDates[0] < Date.now()) {
+
+  
+  if  (selectedDates[0] < Date.now()) {
     Notify.failure('Please choose a date in the future');
     selectedDates[0] = new Date();
     return;
-  } else {
-    selectedTime = selectedDates[0];
-    refs.start.disabled = false;
-    clearInterval(timerId);
+     } else {
+       selectedTime = selectedDates[0];
+      refs.start.disabled = false;
+       clearInterval(timerId);
+     }
   }
-}
+
 
 flatpickr(refs.picker, options);
 
