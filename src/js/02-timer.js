@@ -47,15 +47,15 @@ function startTimer() {
   isActive = true;
   timerId = setInterval(() => {
     const currentTime = Date.now();
-    const delta = selectedTime - currentTime;
+    const сountdown = selectedTime - currentTime;
     refs.start.disabled = true;
 
-    if (delta <= 0) {
+    if (сountdown <= 0) {
       stopTimer();
       return;
     }
 
-    const componentsTimer = convertMs(delta);
+    const componentsTimer = convertMs(сountdown);
     getTimeComponents(componentsTimer);
   }, 1000);
 }
