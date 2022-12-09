@@ -26,13 +26,16 @@ const options = {
 };
 
  function onClose(selectedDates) {
+
+  selectedTime = selectedDates[0];
    if (selectedDates[0] < Date.now()) {
     //  Notiflix.Notify.failure('Please choose a date in the future');
-    selectedDates[0] = new Date();
+    // selectedDates = new Date();
+     refs.start.disabled = true;
     alert('Please choose a date in the future');
      return;
    } else {
-     selectedTime = selectedDates[0];
+    //  selectedTime = selectedDates;
      refs.start.disabled = false;
      clearInterval(timerId);
    }
@@ -52,6 +55,8 @@ const options = {
 // }
 
 flatpickr(refs.picker, options);
+
+let selectedTime;
 
 function startTimer() {
   if (isActive) {
