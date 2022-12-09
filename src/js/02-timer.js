@@ -1,6 +1,6 @@
 import flatpickr from 'flatpickr';
 import "flatpickr/dist/flatpickr.min.css";
-import { Notify } from 'notiflix';
+// import { Notify } from 'notiflix';
 
 
 const refs = {
@@ -29,6 +29,7 @@ const options = {
    if (selectedDates[0] < Date.now()) {
     //  Notiflix.Notify.failure('Please choose a date in the future');
     selectedDates[0] = new Date();
+    alert('Please choose a date in the future');
      return;
    } else {
      selectedTime = selectedDates[0];
@@ -78,7 +79,7 @@ function stopTimer() {
   timerId = null;
   isActive = false;
   refs.start.disabled = true;
-  Notify.success('Time is over');
+  // Notify.success('Time is over');
   return;
 }
 
